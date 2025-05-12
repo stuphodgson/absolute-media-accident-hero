@@ -36,16 +36,21 @@ button {border: 0; outline: none;}
 .button.full {width: 100%;}
 .button.previous {padding: 0;}
 .button.previous i {margin: 0 10px 0 0;}
-.background-blue {background: #24AAE1!important;}
+.background
+.background-blue {background: #1B263B!important;}
+.background-teal {background: #2EC4B6!important;}
 .background-pink {background: #E84C8D!important;}
+.background-orange {background: #E26525!important;}
 .background-green {background: #40C9A2!important;}
 .background-yellow {background: #F7DD72!important;}
 .background-black {background: #0A090C!important;}
 .background-grey {background: #F7F7F7!important;}
 .background-white {background: #FFFFFF!important;}
 .background-none {background: none!important; color: #0A090C;}
-.border-blue {border: 3px solid #24AAE1;}
+.border-blue {border: 3px solid #1B263B;}
+.border-teal {border: 3px solid #2EC4B6;}
 .border-pink {border: 3px solid #E84C8D;}
+.border-orange {border: 3px solid #E26525;}
 .border-white {border: 3px solid #FFFFFF;}
 .border-white.double {border: 6px solid #FFFFFF;}
 .border-none {border: 0!important;}
@@ -65,8 +70,10 @@ button {border: 0; outline: none;}
 .text-weight-800 {font-weight: 800;}
 .text-weight-600 {font-weight: 600;}
 .text-weight-400 {font-weight: 400;}
-.text-color-blue, .text-color-blue * {color: #24AAE1!important;}
+.text-color-blue, .text-color-blue * {color: #1B263B!important;}
+.text-color-teal, .text-color-teal * {color: #2EC4B6!important;}
 .text-color-pink, .text-color-pink * {color: #E84C8D!important;}
+.text-color-orange, .text-color-orange * {color: #E26525!important;}
 .text-color-green, .text-color-green * {color: #40C9A2!important;}
 .text-color-yellow {color: #F7DD72!important;}
 .text-color-white, .text-color-white * {color: #FFFFFF!important;}
@@ -97,7 +104,7 @@ div.spacer {display: block; clear: both; height: 30px; width: 100%;}
 div.spacer.half {height: 20px;}
 
 
-div.logo {width: 260px;}
+div.logo {width: 180px;}
 
 
 div.icon {width: 60px; height: 60px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; margin: 0 0 15px 0; position: absolute; top: 0; left: 0;}
