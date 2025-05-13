@@ -54,6 +54,8 @@ button {border: 0; outline: none;}
 .border-white {border: 3px solid #FFFFFF;}
 .border-white.double {border: 6px solid #FFFFFF;}
 .border-none {border: 0!important;}
+.fill-white {fill: #FFFFFF;}
+.icon.fill-white {filter: brightness(0) invert(1);}
 .link {cursor: pointer; font-weight: 600; border-bottom: 1px solid;}
 .padding-half {padding: 0 0 15px 0!important;}
 .margin-none {margin: 0!important;}
@@ -110,7 +112,7 @@ div.logo {width: 150px;}
 div.icon {width: 60px; height: 60px; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; margin: 0 0 15px 0; position: absolute; top: 0; left: 0;}
 div.icon i {padding: 0; margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 25px;}
 div.icon.inline {position: relative;}
-
+img.icon {width: 25px; height: 25px; display: inline-block; vertical-align: middle;}
 
 div.mark {width: 30%; max-width: 700px; position: absolute; bottom: -5%; left: 10%; opacity: 0.06;}
 div.mark svg {fill: #E84C8D;}

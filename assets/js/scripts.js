@@ -73,6 +73,8 @@ $(document).ready(function () {
 	
 	$('form').on('submit', function(event) {
 		const test = $.urlParam('test');
+		window.location=`thank-you.html`
+		return false;
 		if(test) {
 			var submitUrl = 'http://127.0.0.1:3000/leads/new'
 		} else {
@@ -97,7 +99,7 @@ $(document).ready(function () {
 					window.location=`thank-you.html?id=${result.id}`
 				}
 			}
-		})
+		});
 	})
 
 	
@@ -424,7 +426,7 @@ $(document).ready(function () {
 		if ($('input[name="telephone_number"]').val().length > 10) {
 			$('input[name="telephone_number"]').closest('.field').removeClass('field-error');
 			$('input[name="telephone_number"]').closest('.field').find('.error').hide();
-			cleanse_telephone_number($('input[name="telephone_number"]').val());
+			//cleanse_telephone_number($('input[name="telephone_number"]').val());
 		} else {
 			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
 			$('input[name="telephone_number"]').closest('.field').find('.error').show();
