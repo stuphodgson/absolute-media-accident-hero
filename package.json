@@ -1,0 +1,22 @@
+{
+  "name": "accidenthero",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuphodgson/absolute-media-accident-hero.git"
+  },
+  "author": "Stu Hodgson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stuphodgson/absolute-media-accident-hero/issues"
+  },
+  "homepage": "https://github.com/stuphodgson/absolute-media-accident-hero#readme",
+  "description": "",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.6"
+  }
+}
