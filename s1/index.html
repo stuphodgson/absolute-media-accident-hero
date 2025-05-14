@@ -33,7 +33,7 @@
 	<header class="py-4 shadow-sm bg-white">
 		<div class="container max-w-6xl mx-auto px-4 md:px-8">
 			<div class="flex justify-between items-center">
-				<div class="logo w-40 md:w-48">
+				<div class="logo w-28 md:w-36">
 					<img src="../assets/img/logo.svg" alt="My Accident Hero Logo" class="w-full" />
 				</div>
 				<nav class="form_hide hidden md:block">
@@ -49,7 +49,7 @@
 						</li>
 					</ul>
 				</nav>
-				<div class="secure-badge w-40 md:w-48">
+				<div class="secure-badge w-32 md:w-36">
 					<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 342.29001 80.38215">
 						<path class="cls-1" d="m47.31,37.34215h-8.35v-4.28c-.00203-3.42969-2.78399-6.20835-6.21368-6.20632-3.42681.00203-6.20429,2.7795-6.20632,6.20632v4.28h-8.35v-4.28c0-8.04127,6.51874-14.56,14.56-14.56s14.56,6.51873,14.56,14.56v4.28Z" />
 						<path class="cls-1" d="m50.68,37.34215H14.81c-1.5386.00549-2.78452,1.2514-2.79,2.79v26.52c.01095,1.53469,1.25528,2.77456,2.79,2.78h35.87c1.53307-.00549,2.77452-1.24693,2.78-2.78v-26.52c-.00544-1.53472-1.24531-2.77905-2.78-2.79Zm-16.11,17.42v3.59c.07445,1.0024-.6778,1.87536-1.68019,1.94981-1.0024.07446-1.87536-.6778-1.94981-1.68019-.00666-.08974-.00666-.17987,0-.26962v-3.59c-1.77436-1.0024-2.40017-3.25341-1.39777-5.02777,1.0024-1.77436,3.25341-2.40017,5.02777-1.39777,1.77436,1.0024,2.40017,3.2534,1.39777,5.02777-.33013.58437-.81339,1.06763-1.39777,1.39777Z" />
@@ -166,52 +166,56 @@
 								</ul>
 								<span class="error text-red-600 hidden">We can only help with claims where you have received medical attention</span>
 							</div>
-							<div class="field mb-4">
-								<label class="block text-sm font-medium mb-1">Title</label>
-								<select name="title" id="title" class="w-full border border-gray-300 rounded-md p-2">
-									<option disabled selected value>&mdash;</option>
-									<option value="Mr">Mr</option>
-									<option value="Mrs">Mrs</option>
-									<option value="Ms">Ms</option>
-									<option value="Miss">Miss</option>
-									<option value="Dr">Dr</option>
-									<option value="Rev">Rev</option>
-									<option value="Dame">Dame</option>
-									<option value="Lady">Lady</option>
-									<option value="Sir">Sir</option>
-									<option value="Lord">Lord</option>
-								</select>
-								<span class="error text-red-600 hidden">Please select your title</span>
-							</div>
-							<div class="field mb-4">
-								<label class="block text-sm font-medium mb-1">First name</label>
-								<input type="text" name="fname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="First name" />
-								<span class="error text-red-600 hidden">Please enter your first name</span>
-							</div>
-							<div class="field mb-4">
-								<label class="block text-sm font-medium mb-1">Last name</label>
-								<input type="text" name="lname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="Last name" />
-								<span class="error text-red-600 hidden">Please enter your last name</span>
-							</div>
-							<div class="field mb-4">
-								<label class="block text-sm font-medium mb-1">Mobile telephone number</label>
-								<div class="field-icon secure relative">
-									<input type="tel" name="telephone_number" class="numbers_only telephone_number d8val_inttelephone_mobile_line w-full border border-gray-300 rounded-md p-2" placeholder="Mobile telephone number" />
-									<span class="error text-red-600 hidden">Please enter a valid mobile number</span>
+							<div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4">
+								<div class="field md:col-span-1">
+									<label class="block text-sm font-medium mb-1">Title</label>
+									<select name="title" id="title" class="w-full border border-gray-300 rounded-md p-2">
+										<option disabled selected value>&mdash;</option>
+										<option value="Mr">Mr</option>
+										<option value="Mrs">Mrs</option>
+										<option value="Ms">Ms</option>
+										<option value="Miss">Miss</option>
+										<option value="Dr">Dr</option>
+										<option value="Rev">Rev</option>
+										<option value="Dame">Dame</option>
+										<option value="Lady">Lady</option>
+										<option value="Sir">Sir</option>
+										<option value="Lord">Lord</option>
+									</select>
+									<span class="error text-red-600 hidden">Please select your title</span>
 								</div>
-								<input type="hidden" name="validate_telephone_number" value="" />
-							</div>
-							<div class="field mb-6">
-								<label class="block text-sm font-medium mb-1">Email address</label>
-								<div class="field-icon secure relative">
-									<input type="email" name="email_address" class="w-full border border-gray-300 rounded-md p-2" placeholder="Email address" />
-									<span class="error text-red-600 hidden">Please enter a valid email address</span>
-									<span class="email_validation_error hidden bg-yellow-100 text-yellow-800 p-2 mt-1 rounded">
-										This email address doesn't look valid.<span class="suggested_fix_conditional"> <span class="suggested_fix"></span>.</span> Would you like to fix?<br />
-										<span class="suggested_fix_apply cursor-pointer underline">Yes, fix my email address</span>
-									</span>
+								<div class="field md:col-span-2">
+									<label class="block text-sm font-medium mb-1">First name</label>
+									<input type="text" name="fname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="First name" />
+									<span class="error text-red-600 hidden">Please enter your first name</span>
 								</div>
-								<input type="hidden" name="validate_email_address" value="" />
+								<div class="field md:col-span-2">
+									<label class="block text-sm font-medium mb-1">Last name</label>
+									<input type="text" name="lname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="Last name" />
+									<span class="error text-red-600 hidden">Please enter your last name</span>
+								</div>
+							</div>
+							<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+								<div class="field">
+									<label class="block text-sm font-medium mb-1">Mobile telephone number</label>
+									<div class="field-icon secure relative">
+										<input type="tel" name="telephone_number" class="numbers_only telephone_number d8val_inttelephone_mobile_line w-full border border-gray-300 rounded-md p-2" placeholder="Mobile telephone number" />
+										<span class="error text-red-600 hidden">Please enter a valid mobile number</span>
+									</div>
+									<input type="hidden" name="validate_telephone_number" value="" />
+								</div>
+								<div class="field">
+									<label class="block text-sm font-medium mb-1">Email address</label>
+									<div class="field-icon secure relative">
+										<input type="email" name="email_address" class="w-full border border-gray-300 rounded-md p-2" placeholder="Email address" />
+										<span class="error text-red-600 hidden">Please enter a valid email address</span>
+										<span class="email_validation_error hidden bg-yellow-100 text-yellow-800 p-2 mt-1 rounded">
+											This email address doesn't look valid.<span class="suggested_fix_conditional"> <span class="suggested_fix"></span>.</span> Would you like to fix?<br />
+											<span class="suggested_fix_apply cursor-pointer underline">Yes, fix my email address</span>
+										</span>
+									</div>
+									<input type="hidden" name="validate_email_address" value="" />
+								</div>
 							</div>
 						</div>
 						
@@ -271,7 +275,7 @@
 							<div class="form-valid hidden mb-2">
 								<p class="text-sm mb-2"><i class="fa-solid fa-circle-check text-green-500 mr-1"></i> Thank you, <span class="fname_pull"></span>. You can now go ahead and click the button below to submit your claim.</p>
 							</div>
-							<button id="submit" type="submit" class="button submit w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded transition-colors disabled:opacity-50" disabled>Submit your claim</button>
+							<button id="submit-button" type="submit" class="button submit w-full bg-blue hover:bg-blue-dark text-white font-bold py-3 px-4 rounded transition-colors disabled:opacity-50" disabled>Submit your claim</button>
 						</div>
 						
 						<div class="mt-4 text-center">
@@ -288,24 +292,24 @@
 		<div class="container max-w-6xl mx-auto px-4">
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 				<div class="text-center">
-					<div class="icon flex items-center justify-center w-20 h-20 mx-auto rounded-full bg-white border-2 border-teal mb-4">
+					<div class="icon flex items-center justify-center w-16 h-16 mx-auto rounded-2xl bg-white border-2 border-teal mb-2">
 						<i class="fa-regular fa-hundred-points text-3xl text-teal"></i>
 					</div>
-					<p class="text-lg font-medium mb-2">100% no win, no fee<span class="text-xs align-top">*</span></p>
+					<p class="text-lg font-bold mb-2">100% no win, no fee<span class="text-xs align-top">*</span></p>
 					<p class="text-gray-700">If you qualify for a claim we'll work with you on a no-win-no-fee basis so you only pay for our services if your claim is successful</p>
 				</div>
 				<div class="text-center">
-					<div class="icon flex items-center justify-center w-20 h-20 mx-auto rounded-full bg-white border-2 border-blue mb-4">
+					<div class="icon flex items-center justify-center w-16 h-16 mx-auto rounded-2xl bg-white border-2 border-blue mb-2">
 						<i class="fa-solid fa-user-tie text-3xl text-blue"></i>
 					</div>
-					<p class="text-lg font-medium mb-2">Dedicated professionals</p>
+					<p class="text-lg font-bold mb-2">Dedicated professionals</p>
 					<p class="text-gray-700">Our solicitors have worked on thousands of cases so we're best placed to help you get the compensation you deserve</p>
 				</div>
 				<div class="text-center">
-					<div class="icon flex items-center justify-center w-20 h-20 mx-auto rounded-full bg-white border-2 border-teal mb-4">
+					<div class="icon flex items-center justify-center w-16 h-16 mx-auto rounded-2xl bg-white border-2 border-teal mb-2">
 						<i class="fa-solid fa-stopwatch text-3xl text-teal"></i>
 					</div>
-					<p class="text-lg font-medium mb-2">Simple &amp; quick</p>
+					<p class="text-lg font-bold mb-2">Simple &amp; quick</p>
 					<p class="text-gray-700">Once we have assessed your case simply sit back and let us work to secure your compensation</p>
 				</div>
 			</div>
@@ -322,14 +326,14 @@
 
 	<section class="py-12 form_hide" id="can_i_claim">
 		<div class="container max-w-4xl mx-auto px-4 mb-8">
-			<h2 class="text-3xl font-bold mb-4">Can I claim?</h2>
+			<h2 class="text-5xl font-bold mb-4">Can I claim?</h2>
 			<p class="text-lg font-normal">Below are examples of compensation amounts you could receive depending on the severity of the injury. Left being the least severe and right being the most severe</p>
 		</div>
 		<div class="container max-w-6xl mx-auto px-4">
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<div class="mb-6">
 					<div class="flex items-center mb-4">
-						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-teal mr-3">
+						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border-2 border-teal mr-3">
 							<i class="fa-solid fa-face-head-bandage text-xl text-teal"></i>
 						</div>
 					</div>
@@ -341,7 +345,7 @@
 				</div>
 				<div class="mb-6">
 					<div class="flex items-center mb-4">
-						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-blue mr-3">
+						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border-2 border-blue mr-3">
 							<i class="fa-solid fa-car-burst text-xl text-blue"></i>
 						</div>
 					</div>
@@ -353,7 +357,7 @@
 				</div>
 				<div class="mb-6">
 					<div class="flex items-center mb-4">
-						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-teal mr-3">
+						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border-2 border-teal mr-3">
 							<i class="fa-solid fa-person-falling-burst text-xl text-teal"></i>
 						</div>
 					</div>
@@ -365,7 +369,7 @@
 				</div>
 				<div class="mb-6">
 					<div class="flex items-center mb-4">
-						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-full bg-white border-2 border-blue mr-3">
+						<div class="icon inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white border-2 border-blue mr-3">
 							<i class="fa-solid fa-wave-pulse text-xl text-blue"></i>
 						</div>
 					</div>
@@ -423,13 +427,6 @@
 			<div class="logo mb-4 w-32">
 				<img src="../assets/img/logo.png" alt="My Accident Hero Logo" class="w-full" />
 			</div>
-			<p class="text-gray-700 mb-4">My Accident Hero is a Trading Name under Clear Law Limited. Registered Address: Clear Law, Units 115-119 Timber Wharf, 42-50 Worsley Street, Manchester, M15 4LD. Company Number: XXXX. VAT Number: XXXX. ICO Number: XXXX.</p>
-			<ul class="flex flex-wrap space-x-4 mb-4">
-				<li class="cursor-pointer hover:underline privacy_policy_modal">Privacy policy</li>
-				<li class="cursor-pointer hover:underline cookie_policy_modal">Cookie policy</li>
-				<li class="cursor-pointer hover:underline complaints_procedure_modal">Complaints procedure</li>
-				<li class="cursor-pointer hover:underline contact_us_modal">Contact us</li>
-			</ul>
 			<div class="text-xs clear">
 				
 			</div>
@@ -437,9 +434,9 @@
 	</footer>
 
 	<div class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="privacy_policy_modal">
-		<div class="container mx-auto px-4 h-full flex items-center justify-center">
-			<div class="bg-white rounded-lg w-full max-w-4xl p-6">
-				<div class="flex justify-between items-center mb-4">
+		<div class="mx-auto px-4 h-full flex justify-center">
+			<div class="bg-white w-full p-6 overflow-scroll">
+				<div class="flex items-center mb-4">
 					<h3 class="text-xl font-bold">Privacy Policy</h3>
 					<div class="close cursor-pointer p-2"><i class="fa-solid fa-xmark"></i></div>
 				</div>
@@ -451,9 +448,9 @@
 	</div>
 
 	<div class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="cookie_policy_modal">
-		<div class="container mx-auto px-4 h-full flex items-center justify-center">
-			<div class="bg-white rounded-lg w-full max-w-4xl p-6">
-				<div class="flex justify-between items-center mb-4">
+		<div class="mx-auto px-4 h-full flex justify-center">
+			<div class="bg-white w-full p-6 overflow-scroll">
+				<div class="flex items-center mb-4">
 					<h3 class="text-xl font-bold">Cookie Policy</h3>
 					<div class="close cursor-pointer p-2"><i class="fa-solid fa-xmark"></i></div>
 				</div>
@@ -465,9 +462,9 @@
 	</div>
 
 	<div class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="complaints_procedure_modal">
-		<div class="container mx-auto px-4 h-full flex items-center justify-center">
-			<div class="bg-white rounded-lg w-full max-w-4xl p-6">
-				<div class="flex justify-between items-center mb-4">
+		<div class="mx-auto h-full flex justify-center ">
+			<div class="bg-white w-full p-6 overflow-scroll">
+				<div class="flex items-center mb-4">
 					<h3 class="text-xl font-bold">Complaints Procedure</h3>
 					<div class="close cursor-pointer p-2"><i class="fa-solid fa-xmark"></i></div>
 				</div>
@@ -479,9 +476,9 @@
 	</div>
 
 	<div class="modal fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="contact_us_modal">
-		<div class="container mx-auto px-4 h-full flex items-center justify-center">
-			<div class="bg-white rounded-lg w-full max-w-4xl p-6">
-				<div class="flex justify-between items-center mb-4">
+		<div class="mx-auto px-4 h-full flex justify-center">
+			<div class="bg-white w-full p-6 overflow-scroll">
+				<div class="flex items-center mb-4">
 					<h3 class="text-xl font-bold">Contact Us</h3>
 					<div class="close cursor-pointer p-2"><i class="fa-solid fa-xmark"></i></div>
 				</div>
@@ -497,8 +494,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/odometer@0.4.8/odometer.min.js"></script>
 	<link rel="stylesheet" href="../assets/css/fontawesome_all.css">
 	<!-- <script src="https://kit.fontawesome.com/575619b7c2.js" crossorigin="anonymous"></script> -->
-	<script src="../assets/js/scripts.js?v=1"></script>
-	<script src="../assets/js/popups.js?v=1"></script>
+	<script src="assets/js/scripts.js?v=1"></script>
+	<script src="assets/js/popups.js?v=1"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
 	<script>
 		function generateUUID() {
