@@ -27,6 +27,10 @@ $(document).ready(function () {
 				$('#contact_us_modal').show();
 				$('body').addClass('disable-scroll');
 				break;
+			case 'fees':
+				$('#fees_modal').show();
+				$('body').addClass('disable-scroll');
+				break;
 		}
 	}
 
@@ -51,7 +55,10 @@ $(document).ready(function () {
 		$('#contact_us_modal').show();
 		$('body').addClass('disable-scroll');
 	});
-
+	$('.fees_modal').click(function () {
+		$('#fees_modal').show();
+		$('body').addClass('disable-scroll');
+	});
 
 	// Privacy policy content
 	var privacy_policy_modal_content =
@@ -83,7 +90,7 @@ $(document).ready(function () {
 									<p>It is important that you read this privacy notice together with any other privacy notice or fair processing notice we may provide on specific occasions when we are collecting or processing personal data about you so that you are fully aware of how and why we are using your data. This privacy notice supplements the other notices and is not intended to override them.</p>
 									<h4>Controller</h4>
 									<p>Clear Law LLP is the controller and responsible for your personal data (collectively referred to as "Clear Legal", "we", "us" or "our" in this privacy notice).</p>
-									<p>We have appointed a data protection officer (DPO) who is responsible for overseeing questions in relation to this privacy notice. If you have any questions about this privacy notice, including any requests to exercise your legal rights, please contact the DPO using the details set out below. </p>
+									<p>We have appointed a data protection officer (DPO) who is responsible for overseeing questions in relation to this privacy notice. If you have any questions about this privacy notice, including any requests to exercise your legal rights, please contact the DPO using the details set out below.</p>
 									<h4>Contact details</h4>
 									<p>Our full details are:</p>
 									<p>Full name of legal entity:	Clear Law LLP
@@ -109,11 +116,11 @@ $(document).ready(function () {
 										<li>Contact Data includes address, email address and telephone numbers.</li>
 										<li>Financial Data includes bank account and payment card details.</li>
 										<li>Technical Data includes internet protocol (IP) address, browser type and version, time zone setting and location, browser plug-in types and versions, operating system and platform and other technology on the devices you use to access this website.</li>
-										<li>Usage Data includes information about how you use our website and services. </li>
+										<li>Usage Data includes information about how you use our website and services.</li>
 										<li>Marketing and Communications Data includes your preferences in receiving marketing from us.</li>
 									</ul>
-									<p>We also collect, use and share Aggregated Data such as statistical or demographic data for any purpose. Aggregated Data may be derived from your personal data but is not considered personal data in law as this data does not directly or indirectly reveal your identity. For example, we may aggregate your Usage Data to calculate the percentage of users accessing a specific website feature. However, if we combine or connect Aggregated Data with your personal data so that it can directly or indirectly identify you, we treat the combined data as personal data which will be used in accordance with this privacy notice.</p>
-									<p>We do not collect any Special Categories of Personal Data about you (this includes details about your race or ethnicity, religious or philosophical beliefs, sex life, sexual orientation, political opinions, trade union membership, information about your health and genetic and biometric data). Nor do we collect any information about criminal convictions and offences.</p>
+									<p>We also collect, use and share <span class="font-weight-bold">Aggregated Data</span> such as statistical or demographic data for any purpose. Aggregated Data may be derived from your personal data but is not considered personal data in law as this data does not directly or indirectly reveal your identity. For example, we may aggregate your Usage Data to calculate the percentage of users accessing a specific website feature. However, if we combine or connect Aggregated Data with your personal data so that it can directly or indirectly identify you, we treat the combined data as personal data which will be used in accordance with this privacy notice.</p>
+									<p>We do not collect any <span class="font-weight-bold">Special Categories of Personal Data</span> about you (this includes details about your race or ethnicity, religious or philosophical beliefs, sex life, sexual orientation, political opinions, trade union membership, information about your health and genetic and biometric data). Nor do we collect any information about criminal convictions and offences.</p>
 									<p class="font-weight-bold">If you fail to provide personal data</p>
 									<p>Where we need to collect personal data by law, or under the terms of a contract we have with you and you fail to provide that data when requested, we may not be able to perform the contract we have or are trying to enter into with you (for example, to provide you with goods or services). In this case, we may have to cancel a product or service you have with us but we will notify you if this is the case at the time.</p>
 								</li>
@@ -124,14 +131,13 @@ $(document).ready(function () {
 										<li>Direct interactions. You may give us your Identity, Contact and Financial Data by filling in forms or by corresponding with us by post, phone, email or otherwise. This includes personal data you provide when you:
 											<ul>
 												<li>apply for our products or services;</li>
-											<li>request marketing to be sent to you;</li>
-											<li>engage our services, or</li>
-											<li>give us feedback.</li>
+												<li>request marketing to be sent to you;</li>
+												<li>engage our services, or</li>
+												<li>give us feedback.</li>
 											</ul>
 										</li>
-										<li>Automated technologies or interactions. As you interact with our website, we may automatically collect Technical Data about your equipment, browsing actions and patterns. We collect this personal data by using cookies and other similar technologies. We may also receive Technical Data about you if you visit other websites employing our cookies. Please see our cookie policy.
-										</li>
-										<li>Third parties or publicly available sources. We may receive personal data about you from various third parties and public sources as set out below: 
+										<li><span class="font-weight-bold">Automated technologies or interactions.</span> As you interact with our website, we may automatically collect Technical Data about your equipment, browsing actions and patterns. We collect this personal data by using cookies and other similar technologies. We may also receive Technical Data about you if you visit other websites employing our cookies. Please see our cookie policy.</li>
+										<li><span class="font-weight-bold">Third parties or publicly available sources.</span> We may receive personal data about you from various third parties and public sources as set out below: 
 											<ul>
 												<li>Technical Data from the following parties:</li>
 												<li>(a)	analytics providers such as Google based outside the EU; </li>
@@ -217,12 +223,12 @@ $(document).ready(function () {
 										</tbody></table>
 									</ul>
 									<h4 class="font-weight-bold">Marketing</h4>
-									<p>We strive to provide you with choices regarding certain personal data uses, particularly around marketing and advertising. </p>
+									<p>We strive to provide you with choices regarding certain personal data uses, particularly around marketing and advertising.</p>
 									<h4>Promotional material from us </h4>
-									<p>We may use your Identity, Contact, Technical, Usage and Profile Data to form a view on what services we think you may want or need, or what may be of interest to you. This is how we decide which products, services and offers may be relevant for you (we call this marketing). </p>
+									<p>We may use your Identity, Contact, Technical, Usage and Profile Data to form a view on what services we think you may want or need, or what may be of interest to you. This is how we decide which products, services and offers may be relevant for you (we call this marketing).</p>
 									<p>You will receive marketing communications from us if you have requested information from us or purchased services from us and you have not opted out of receiving that marketing.</p>
 									<h4>Third-party marketing </h4>
-									<p>We will get your express opt-in consent before we share your personal data with any company outside the Clear Law LLP group of companies for marketing purposes. </p>
+									<p>We will get your express opt-in consent before we share your personal data with any company outside the Clear Law LLP group of companies for marketing purposes.</p>
 									<h4>Opting out</h4>
 									<p>You can ask us or third parties to stop sending you marketing messages at any by contacting us at any time.</p>
 									<p>Where you opt out of receiving these marketing messages, this will not apply to personal data provided to us as a result of a service purchase, service experience or other transactions.</p>
@@ -280,32 +286,123 @@ $(document).ready(function () {
 								<li>
 									<p class="font-weight-bold">Glossary</p>
 									<h4>LAWFUL BASIS</h4>
-									<p>Legitimate Interest means the interest of our business in conducting and managing our business to enable us to give you the best service/product and the best and most secure experience. We make sure we consider and balance any potential impact on you (both positive and negative) and your rights before we process your personal data for our legitimate interests. We do not use your personal data for activities where our interests are overridden by the impact on you (unless we have your consent or are otherwise required or permitted to by law). You can obtain further information about how we assess our legitimate interests against any potential impact on you in respect of specific activities by contacting us</p>
-									<p>Performance of Contract means processing your data where it is necessary for the performance of a contract to which you are a party or to take steps at your request before entering into such a contract.</p>
-									<p>Comply with a legal or regulatory obligation means processing your personal data where it is necessary for compliance with a legal or regulatory obligation that we are subject to.</p>
+									<p><span class="font-weight-bold">Legitimate Interest</span> means the interest of our business in conducting and managing our business to enable us to give you the best service/product and the best and most secure experience. We make sure we consider and balance any potential impact on you (both positive and negative) and your rights before we process your personal data for our legitimate interests. We do not use your personal data for activities where our interests are overridden by the impact on you (unless we have your consent or are otherwise required or permitted to by law). You can obtain further information about how we assess our legitimate interests against any potential impact on you in respect of specific activities by contacting us</p>
+									<p><span class="font-weight-bold">Performance of Contract</span> means processing your data where it is necessary for the performance of a contract to which you are a party or to take steps at your request before entering into such a contract.</p>
+									<p><span class="font-weight-bold">Comply with a legal or regulatory obligation</span> means processing your personal data where it is necessary for compliance with a legal or regulatory obligation that we are subject to.</p>
 									<h4>THIRD PARTIES</h4>
 									<p>External Third Parties means:</p>
 									<ul>
 										<li>Service providers acting as processors based in the United Kingdom who provide IT and system administration services.</li>
 										<li>Professional advisers acting as processors or joint controllers including other lawyers, bankers, auditors and insurers based in the UK who provide consultancy, banking, legal, insurance and accounting services.</li>
 										<li>HM Revenue &amp; Customs, regulators and other authorities acting as processors or joint controllers based in the United Kingdom who require reporting of processing activities in certain circumstances. </li>
-										<li>Credit Reference Agencies, which provide services to us such as credit risk and affordability checking, fraud prevention, anti-money laundering, identity verification and checking.&nbsp; We use their services in order to assess your credit worthiness, check your identity, trace and recover debts and prevent criminal activity such as fraud and money laundering.&nbsp; More information about TransUnion and the ways in which they will use and share personal information can be found in their privacy notice at <a href="https://www.transunion.co.uk/legal-information/bureau-privacy-notice" target="_blank">https://www.transunion.co.uk/legal-information/bureau-privacy-notice.</a></li>
 										<li>Clear Legal Marketing Limited and their agents to provide initial assessment services.</li>
 									</ul>
 									<h4>YOUR LEGAL RIGHTS</h4>
 									<p>You have the right to:</p>
-									<p>Request access to your personal data (commonly known as a "data subject access request"). This enables you to receive a copy of the personal data we hold about you and to check that we are lawfully processing it.</p>
-									<p>Request correction of the personal data that we hold about you. This enables you to have any incomplete or inaccurate data we hold about you corrected, though we may need to verify the accuracy of the new data you provide to us.</p>
-									<p>Request erasure of your personal data. This enables you to ask us to delete or remove personal data where there is no good reason for us continuing to process it. You also have the right to ask us to delete or remove your personal data where you have successfully exercised your right to object to processing (see below), where we may have processed your information unlawfully or where we are required to erase your personal data to comply with local law. Note, however, that we may not always be able to comply with your request of erasure for specific legal reasons which will be notified to you, if applicable, at the time of your request. </p>
-									<p>Object to processing of your personal data where we are relying on a legitimate interest (or those of a third party) and there is something about your particular situation which makes you want to object to processing on this ground as you feel it impacts on your fundamental rights and freedoms. You also have the right to object where we are processing your personal data for direct marketing purposes. In some cases, we may demonstrate that we have compelling legitimate grounds to process your information which override your rights and freedoms.</p>
-									<p>Request restriction of processing of your personal data. This enables you to ask us to suspend the processing of your personal data in the following scenarios: (a) if you want us to establish the data's accuracy; (b) where our use of the data is unlawful but you do not want us to erase it; (c) where you need us to hold the data even if we no longer require it as you need it to establish, exercise or defend legal claims; or (d) you have objected to our use of your data but we need to verify whether we have overriding legitimate grounds to use it. </p>
-									<p>Request the transfer of your personal data to you or to a third party. We will provide to you, or a third party you have chosen, your personal data in a structured, commonly used, machine-readable format. Note that this right only applies to automated information which you initially provided consent for us to use or where we used the information to perform a contract with you. </p>
-									<p>Withdraw consent at any time where we are relying on consent to process your personal data. However, this will not affect the lawfulness of any processing carried out before you withdraw your consent. If you withdraw your consent, we may not be able to provide certain products or services to you. We will advise you if this is the case at the time you withdraw your consent.</p>
+									<p><span class="font-weight-bold">Request access</span> to your personal data (commonly known as a "data subject access request"). This enables you to receive a copy of the personal data we hold about you and to check that we are lawfully processing it.</p>
+									<p><span class="font-weight-bold">Request correction</span> of the personal data that we hold about you. This enables you to have any incomplete or inaccurate data we hold about you corrected, though we may need to verify the accuracy of the new data you provide to us.</p>
+									<p><span class="font-weight-bold">Request erasure</span> of your personal data. This enables you to ask us to delete or remove personal data where there is no good reason for us continuing to process it. You also have the right to ask us to delete or remove your personal data where you have successfully exercised your right to object to processing (see below), where we may have processed your information unlawfully or where we are required to erase your personal data to comply with local law. Note, however, that we may not always be able to comply with your request of erasure for specific legal reasons which will be notified to you, if applicable, at the time of your request.</p>
+									<p><span class="font-weight-bold">Object to processing</span> of your personal data where we are relying on a legitimate interest (or those of a third party) and there is something about your particular situation which makes you want to object to processing on this ground as you feel it impacts on your fundamental rights and freedoms. You also have the right to object where we are processing your personal data for direct marketing purposes. In some cases, we may demonstrate that we have compelling legitimate grounds to process your information which override your rights and freedoms.</p>
+									<p><span class="font-weight-bold">Request restriction of processing</span> of your personal data. This enables you to ask us to suspend the processing of your personal data in the following scenarios: (a) if you want us to establish the data's accuracy; (b) where our use of the data is unlawful but you do not want us to erase it; (c) where you need us to hold the data even if we no longer require it as you need it to establish, exercise or defend legal claims; or (d) you have objected to our use of your data but we need to verify whether we have overriding legitimate grounds to use it.</p>
+									<p><span class="font-weight-bold">Request the transfer</span> of your personal data to you or to a third party. We will provide to you, or a third party you have chosen, your personal data in a structured, commonly used, machine-readable format. Note that this right only applies to automated information which you initially provided consent for us to use or where we used the information to perform a contract with you.</p>
+									<p><span class="font-weight-bold">Withdraw consent at any time</span> where we are relying on consent to process your personal data. However, this will not affect the lawfulness of any processing carried out before you withdraw your consent. If you withdraw your consent, we may not be able to provide certain products or services to you. We will advise you if this is the case at the time you withdraw your consent.</p>
 								</li>
 							</ol>
     `
 
+	var our_fees_content =
+		`
+			<div class="logo">
+				<img src="assets/img/logo.png" alt="" />
+			</div>
+			<p class='h2'>Our Fees and Services Information</p>
+			<p>Civil Litigation</p>
+			<p>We act on behalf of individuals looking to recover compensation for losses they have incurred due to another individual’s or company’s negligence. More specifically this relates to the following claim types:-</p>
+			<ul>
+				<li>Personal Injury (including Clinical Negligence & Industrial Disease)</li>
+				<li>Housing Disrepair</li>
+			</ul>
+			<p>If you instruct us and we agree to act for you under a Conditional Fee Agreement, you will be liable for our fees in the event you successfully win your case or in the unlikely event you materially breach the terms of the agreement. </p>
+			<p class="font-weight-bold">Fees You Will be Liable for under a No-win-no-Fee Agreement</p>
 
+			<table class="table">
+			<tr>
+				<td>Costs you are liable to pay if you win your case or if you breach your Agreement with Us</td>
+				<td>Cost</td>
+			</tr>
+			<tr>
+				<td>Our success fee</td>
+				<td>This is our reward for success and it is not calculated by reference to the risks of the claim but is what we need to set it at in order to make claims of this type commercially viable for us. The success fee cannot be recovered from your opponent and you will be liable to pay it in full up to a maximum of 25% of the damages you are awarded, for general damages and past losses.</td>
+			</tr>
+			<tr>
+				<td>Our legal fees</td>
+				<td>These are calculated on an hourly rate basis and you can expect to recover the majority of our legal fees from your opponent. You will be liable to pay any shortfall up to an overall cap of 25% of all of your damages.</td>
+			</tr>
+			<tr>
+				<td>Any expenses (disbursements) spent on your behalf, eg court fees or expert fees</td>
+				<td>Generally, you can expect to recover the majority or all of your disbursements from your opponent (including the recoverable element of any After the Event Insurance Premium in a Clinical Negligence claim). You will be liable to pay any shortfall up to an overall cap of 25% of all of your damages<br/>Certain factors can reduce the amount of disbursements you recover from your opponent, usually in complex matters. We will advise you if and when such factors arise.<br/>Please see the section below regarding after-the-event costs insurance, which is treated differently.</td>
+			</tr>
+			<tr>
+				<td>After the Event Insurance Premium</td>
+				<td>If you do not have suitable insurance in place to cover the risks of losing your case or if we are unable to obtain indemnity from such insurance on your behalf, we may recommend alternative cover to you. We only recommend insurance cover provided by companies with whom we have made contractual arrangements. We do not conduct an analysis of the insurance market.<br/>In the event that you win you will have to pay for the unrecoverable insurance policy at the end of your case from your compensation in addition to any contribution to success fee and any shortfall in fees or disbursements.</td>
+			</tr>
+			<tr>
+				<td>The fees of any barrister we instruct on your behalf</td>
+				<td>Generally, we will try to instruct a barrister on a no-win-no-fee basis. If so, we will advise you at the time what fees you will be liable to pay the barrister.<br/></td>
+			</tr>
+			<p class="font-weight-bold">How long will it take?</p>
+			<p>An average case can take between 12 and 48 months. However, the time that your case might take will depend on a number of factors, including:</p>
+			<ul>
+				<li>The type of claim</li>
+				<li>The nature and severity of your injuries</li>
+				<li>Whether your case involves multiple parties or complicated legal issues</li>
+				<li>The volume and quality of evidence required to support your claim</li>
+				<li>Whether your case goes to trial or is settled outside of court</li>
+			</ul>
+
+			<p class="font-weight-bold">What work would you be doing for me?</p>
+			<p>Whilst every case is different, here is an example of the key stages of most claims. Some stages may switch position, and some stages may or may not be required depending on the circumstances of the case. </p>
+			
+			<table class="table">
+			<tr>
+				<td>Stage 1</td>
+				<td>Initial Case Review and advice on merits</td>
+			</tr>
+			<tr>
+				<td>Stage 2</td>
+				<td>Obtain Medical Evidence. For example, reviewing your medical records and assessment by a relevant independent medical professional</td>
+			</tr>
+			<tr>
+				<td>Stage 3</td>
+				<td>Letter of Claim sent to opponent</td>
+			</tr>
+			<tr>
+				<td>Stage 4</td>
+				<td>Review and advice on Opponent’s response</td>
+			</tr>
+			<tr>
+				<td>Stage 5</td>
+				<td>Proceedings Issued</td>
+			</tr>
+			<tr>
+				<td>Stage 6</td>
+				<td>Case heard at trial (in minority of cases)</td>
+			</tr>
+			<tr>
+				<td>Stage 7</td>
+				<td>Settlement Negotiations</td>
+			</tr>
+			<tr>
+				<td>Stage 8</td>
+				<td>Compensation Received</td>
+			</tr>
+			</table>
+
+			<p class="font-weight-bold">Cancellation</p>
+			<p>If you wish to cancel this contract you can do so within 14 days at no cost. Just let us know.</p>
+			<p>If you cancel our service after 14 days and after we submit your claim you will be liable to pay our fees. </p>
+
+		`
 
 
 
@@ -379,12 +476,12 @@ $(document).ready(function () {
 		</div>
 		<p class="h2">Complaints procedure</p>
 		<p>We are committed to high quality advice and client care. We would hope you will not have cause to complain, but we know that we may not always be perfect, and if you are unhappy about any aspect of the service you have received or about the bill, we hope that you will be able to resolve it with your fee earner.</p>
-						<p>If your complaint is about a bill, you can apply to the court for an assessment of the bill. If all or part of the bill remains unpaid, we are entitled to charge interest. Of course, as we are acting for you on the basis of the agreement we signed, you will not receive a bill as long as you comply with that agreement.</p>
-						<h4>How To Complain</h4>
-						<p>We appreciate that you may not feel comfortable resolving a complaint with your file handler, or that you may feel that your complaint has not been resolved properly. If that is the case, you are entitled at any time to complain to our client care manager, Darren Gray.</p>
-						<p>If you want to contact Darren, you can write to him, or email him at&nbsp;<a href="mailto:darren.gray@clearcommercial.co.uk">darren.gray@clearcommercial.co.uk</a>&nbsp;&nbsp;&nbsp;</p>
-						<p>Darren will handle your complaint fairly and in confidence. He will acknowledge receipt of your complaint within 2 days of receiving it, and our aim is to resolve all complaints as soon as possible and in any event within 40 working days maximum period allowed by the Legal Ombudsman.</p>
-						<p>If you are sending your complaint to us, please ensure that:</p>
+		<p>If your complaint is about a bill, you can apply to the court for an assessment of the bill. If all or part of the bill remains unpaid, we are entitled to charge interest. Of course, as we are acting for you on the basis of the agreement we signed, you will not receive a bill as long as you comply with that agreement.</p>
+		<h4>How To Complain</h4>
+		<p>We appreciate that you may not feel comfortable resolving a complaint with your file handler, or that you may feel that your complaint has not been resolved properly. If that is the case, you are entitled at any time to complain to our client care manager, Darren Gray.</p>
+		<p>If you want to contact Darren, you can write to him, or email him at&nbsp;<a href="mailto:darren.gray@clearcommercial.co.uk">darren.gray@clearcommercial.co.uk</a>&nbsp;&nbsp;&nbsp;</p>
+		<p>Darren will handle your complaint fairly and in confidence. He will acknowledge receipt of your complaint within 2 days of receiving it, and our aim is to resolve all complaints as soon as possible and in any event within 40 working days maximum period allowed by the Legal Ombudsman.</p>
+		<p>If you are sending your complaint to us, please ensure that:</p>
 						<ul>
 							<li>You provide enough information for us to positively identify you on our systems</li>
 							<li>You provide details of your complaint</li>
@@ -455,4 +552,5 @@ $(document).ready(function () {
 	$("#cookie_policy_modal div.flex-container div.column").append(cookie_policy_modal_content);
 	$("#complaints_procedure_modal div.flex-container div.column").append(complaints_procedure_modal_content);
 	$("#contact_us_modal div.flex-container div.column").append(contact_us_modal_content);
+	$("#fees_modal div.flex-container div.column").append(our_fees_content);
 });

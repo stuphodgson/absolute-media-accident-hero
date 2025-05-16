@@ -63,7 +63,7 @@ button {border: 0; outline: none;}
 .margin-double {margin: 0 0 50px 0!important;}
 .padding-right-desktop {padding: 0 25% 0 0;}
 .text-size-smaller, .text-size-smaller * {font-size: 12px; line-height: 180%;}
-.text-size-smaller * {margin: 0 0 15px 0;}
+.text-size-smaller * {margin: 0 0 0 0;}
 .text-size-smallest {font-size: 10px; line-height: 180%; vertical-align: top; display: inline-block;}
 .text-size-pence {font-size: 75%; display: inline-block; vertical-align: middle;}
 .text-align-center, .text-align-center * {text-align: center;}
@@ -148,6 +148,8 @@ div.flex-container div.column {padding: 0 30px 0 0; flex-direction: column; z-in
 div.flex-container.icons div.column {padding: 0 30px 0 90px}
 div.flex-container.sixty-forty div.column {flex-basis: 60%;}
 div.flex-container.sixty-forty div.column:last-of-type {flex-basis: 40%;}
+div.flex-container.eight-twenty div.column {flex-basis: 80%;}
+div.flex-container.eight-twenty div.column:last-of-type {flex-basis: 20%;}
 div.flex-container.four-col div.column {flex-basis: calc(100% / 4);}
 div.flex-container.three-col div.column {flex-basis: calc(100% / 3);}
 div.flex-container.two-col div.column {flex-basis: calc(100% / 2);}
@@ -199,6 +201,68 @@ div.modal .flex-container .column:last-of-type {margin: 0;}
 div.modal div.basic-list {margin: 0 0 30px 0;}
 div.modal p, div.modal div.basic-list {margin: 0 0 15px 0;}
 
+/* Table styling for modal popups */
+div.modal table.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 30px 0;
+  clear: both;
+  table-layout: fixed;
+}
+
+div.modal table.table th,
+div.modal table.table td {
+  padding: 12px 15px;
+  text-align: left;
+  border: 1px solid #ddd;
+  vertical-align: top;
+  display: table-cell;
+  word-wrap: break-word;
+}
+
+div.modal table.table tr {
+  display: table-row;
+}
+
+div.modal table.table th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+  color: #0A090C;
+}
+
+div.modal table.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+div.modal table.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Two-column table styling */
+div.modal table.table tr td:first-child {
+  width: 30%;
+}
+
+div.modal table.table tr td:last-child {
+  width: 70%;
+}
+
+/* Responsive table styles */
+@media screen and (max-width: 768px) {
+  div.modal table.table {
+    display: table;
+    width: 100%;
+    overflow-x: auto;
+    table-layout: fixed;
+  }
+  
+  div.modal table.table th,
+  div.modal table.table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+
 
 section, footer {padding: 120px 0;}
 section.padding-top-none {padding: 0 0 120px 0;}
@@ -227,6 +291,9 @@ section.form div.inline-total {-webkit-border-radius: 15px; -moz-border-radius: 
 section.form div.inline-total.display {display: block;}
 section.form div.nwnf.mobile {display: none;}
 
+table {width: 100%;}
+table tr {display: block;}
+table td {display: block;}
 
 header {height: 110px;}
 header div.wrap {height: 100%;}
