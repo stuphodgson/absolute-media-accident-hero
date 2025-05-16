@@ -57,6 +57,7 @@ button {border: 0; outline: none;}
 .fill-white {fill: #FFFFFF;}
 .icon.fill-white {filter: brightness(0) invert(1);}
 .link {cursor: pointer; font-weight: 600; border-bottom: 1px solid;}
+.link a {cursor: pointer; font-weight: 600; color: #0A090C;}
 .padding-half {padding: 0 0 15px 0!important;}
 .margin-none {margin: 0!important;}
 .margin-half {margin: 0 0 15px 0!important;}
