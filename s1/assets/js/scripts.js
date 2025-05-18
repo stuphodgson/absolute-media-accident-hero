@@ -604,7 +604,7 @@ $(document).ready(function () {
 			submit_not_valid();
 		} else {
 			$('input[name="validate_telephone_number"]').val('true');
-			step_4_validate_all();
+			validate_all_fields();
 		}
 	}
 	// Cleanse email address function
@@ -667,7 +667,7 @@ $(document).ready(function () {
 					$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
 					$('input[name="email_address"]').val(result.suggestedEmail);
 					$('input[name="validate_email_address"]').val('true');
-					step_4_validate_all();
+					validate_all_fields();
 				});
 			} else {
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
@@ -681,7 +681,7 @@ $(document).ready(function () {
 			}
 		} else {
 			$('input[name="validate_email_address"]').val('true');
-			step_4_validate_all();
+			validate_all_fields();
 			
 			// Email is valid, proceed with form submission if it was triggered by submit button
 			if (window.emailValidationTriggeredBySubmit) {
