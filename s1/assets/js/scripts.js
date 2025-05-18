@@ -2,6 +2,27 @@ $(document).ready(function () {
 	// Initialize validation flags
 	$('input[name="validate_telephone_number"]').val('false');
 	$('input[name="validate_email_address"]').val('false');
+	
+	// Add click handler for email validation on submit button
+	$('#submit-button').click(function(e) {
+		// Get the email value
+		var email = $('input[name="email_address"]').val();
+		
+		// Only validate if email has a value
+		if (email && email.length > 2) {
+			// Prevent default form submission until validation completes
+			e.preventDefault();
+			
+			// Set flag to indicate validation was triggered by submit button
+			window.emailValidationTriggeredBySubmit = true;
+			
+			// Show loading indicator if needed
+			// $('.email-validating').show();
+			
+			// Call the email validation function
+			cleanse_email_address(email);
+		}
+	});
 
 	// Viewport bubbles
 	if (window.location.href.indexOf('localhost') > -1) {
@@ -589,46 +610,89 @@ $(document).ready(function () {
 	// Cleanse email address function
 	function cleanse_email_address(email) {
 		$('input[name="validate_email_address"]').val('');
-		var emailvalidation = new data8.emailvalidation();
-		emailvalidation.cleanse(
-			email,
-			'MX',
-			null,
-			[
-				new data8.option('MissingMXRecordHandling', 'AssumeInvalid')
-			],
-			show_cleansed_email_address
-		);
+		console.log('Validating email:', email);
+		
+		// Send POST request to validate email
+		$.ajax({
+			url: 'https://mortgagedealswitcher.co.uk/checkEmail', // Replace with your actual validation endpoint
+			type: 'POST',
+			dataType: 'json',
+			data: { v: email },
+			success: function(response) {
+				show_cleansed_email_address(response);
+			},
+			error: function(xhr, status, error) {
+				console.error('Email validation error:', error);
+				// If validation service fails, fall back to regex validation
+				var email_validation_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				if (email_validation_regex.test(email)) {
+					$('input[name="validate_email_address"]').val('true');
+					validate_all_fields();
+				} else {
+					$('input[name="validate_email_address"]').val('');
+					$('input[name="email_address"]').closest('.field').addClass('field-error');
+					$('input[name="email_address"]').closest('.field').find('.error').show();
+					scroll_to_first_error();
+					submit_not_valid();
+				}
+			}
+		});
 	}
 	function show_cleansed_email_address(result) {
 		console.log('Email Address', result);
-		if (result.OriginalValid === false) {
+		// Hide any loading indicators
+		// $('.email-validating').hide();
+		
+		// Assuming the API returns isValid and suggestedEmail fields
+		if (result.isValid === false) {
 			$('input[name="email_address"]').closest('.field').addClass('field-error');
 			$('input[name="email_address"]').closest('.field').find('.error').show();
 			$('input[name="validate_email_address"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
-			if (result.SuggestedEmailAddress) {
+			
+			// If there's a suggested email correction
+			if (result.suggestedEmail) {
 				$('input[name="email_address"]').closest('.field').find('.error').hide();
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error').show();
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').show();
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_apply').show();
+				
+				// Display suggestion message
+				$('.email_validation_error .suggested_fix').text(result.message || 'Did you mean ' + result.suggestedEmail + '?');
+				
+				// Handle click on suggested fix
+				$('.email_validation_error .suggested_fix_apply').click(function () {
+					$('input[name="email_address"]').closest('.field').removeClass('field-error');
+					$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
+					$('input[name="email_address"]').val(result.suggestedEmail);
+					$('input[name="validate_email_address"]').val('true');
+					step_4_validate_all();
+				});
 			} else {
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').hide();
 				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_apply').hide();
+				
+				// Display error message if provided
+				if (result.message) {
+					$('.email_validation_error .suggested_fix').text(result.message);
+				}
 			}
-			$('.email_validation_error .suggested_fix').text(result.Comment);
-			$('.email_validation_error .suggested_fix_apply').click(function () {
-				$('input[name="email_address"]').closest('.field').removeClass('field-error');
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
-				$('input[name="email_address"]').val(result.SuggestedEmailAddress);
-				$('input[name="validate_email_address"]').val('true');
-				step_4_validate_all();
-			});
 		} else {
 			$('input[name="validate_email_address"]').val('true');
 			step_4_validate_all();
+			
+			// Email is valid, proceed with form submission if it was triggered by submit button
+			if (window.emailValidationTriggeredBySubmit) {
+				window.emailValidationTriggeredBySubmit = false;
+				
+				// If form is valid, submit it
+				if (form_valid) {
+					// Trigger the form submission
+					$('form').submit();
+				}
+			}
 		}
 	}
 	function submit_valid() {
