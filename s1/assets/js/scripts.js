@@ -3,24 +3,41 @@ $(document).ready(function () {
 	$('input[name="validate_telephone_number"]').val('false');
 	$('input[name="validate_email_address"]').val('false');
 	
-	// Add click handler for email validation on submit button
+	// Add click handler for email and telephone validation on submit button
 	$('#submit-button').click(function(e) {
-		// Get the email value
+		// Get the email and telephone values
 		var email = $('input[name="email_address"]').val();
+		var telephone = $('input[name="telephone_number"]').val();
 		
-		// Only validate if email has a value
+		// Prevent default form submission until validation completes
+		e.preventDefault();
+		
+		// Set flags to indicate validation was triggered by submit button
+		window.emailValidationTriggeredBySubmit = true;
+		window.phoneValidationTriggeredBySubmit = true;
+		
+		// Validation counters to track completion
+		window.validationsCompleted = 0;
+		window.validationsNeeded = 0;
+		
+		// Validate email if it has a value
 		if (email && email.length > 2) {
-			// Prevent default form submission until validation completes
-			e.preventDefault();
-			
-			// Set flag to indicate validation was triggered by submit button
-			window.emailValidationTriggeredBySubmit = true;
-			
-			// Show loading indicator if needed
-			// $('.email-validating').show();
-			
-			// Call the email validation function
+			window.validationsNeeded++;
 			cleanse_email_address(email);
+		}
+		
+		// Validate telephone if it has a value
+		if (telephone && telephone.length > 5) {
+			window.validationsNeeded++;
+			cleanse_telephone_number(telephone);
+		}
+		
+		// If no validations needed, submit the form
+		if (window.validationsNeeded === 0) {
+			// If form is valid, submit it
+			if (form_valid) {
+				$('form').submit();
+			}
 		}
 	});
 
@@ -567,6 +584,7 @@ $(document).ready(function () {
 	// Cleanse telephone number
 	function cleanse_telephone_number(telephoneNumber) {
 		$('input[name="validate_telephone_number"]').val('');
+		console.log('Validating telephone:', telephoneNumber);
 		var phonevalidation = new data8.phonevalidation();
 		phonevalidation.isvalid(
 			telephoneNumber,
@@ -586,8 +604,15 @@ $(document).ready(function () {
 			show_cleansed_telephone_number
 		);
 	}
+	
 	function show_cleansed_telephone_number(result) {
 		console.log('Telephone Number', result);
+		
+		// Increment the validation counter
+		if (window.phoneValidationTriggeredBySubmit) {
+			window.validationsCompleted = (window.validationsCompleted || 0) + 1;
+		}
+		
 		if (result.Status.Success === false) {
 			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
 			$('input[name="telephone_number"]').closest('.field').find('.error').show();
@@ -596,6 +621,7 @@ $(document).ready(function () {
 			submit_not_valid();
 			return false;
 		}
+		
 		if (result.Result.ValidationResult === 'Invalid') {
 			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
 			$('input[name="telephone_number"]').closest('.field').find('.error').show();
@@ -605,6 +631,11 @@ $(document).ready(function () {
 		} else {
 			$('input[name="validate_telephone_number"]').val('true');
 			validate_all_fields();
+			
+			// If validation was triggered by submit button, check if we should submit the form
+			if (window.phoneValidationTriggeredBySubmit) {
+				checkAllValidationsComplete();
+			}
 		}
 	}
 	// Cleanse email address function
@@ -685,16 +716,33 @@ $(document).ready(function () {
 			
 			// Email is valid, proceed with form submission if it was triggered by submit button
 			if (window.emailValidationTriggeredBySubmit) {
-				window.emailValidationTriggeredBySubmit = false;
-				
-				// If form is valid, submit it
-				if (form_valid) {
-					// Trigger the form submission
-					$('form').submit();
-				}
+				// Increment the validation counter
+				window.validationsCompleted = (window.validationsCompleted || 0) + 1;
+				checkAllValidationsComplete();
 			}
 		}
 	}
+	// Function to check if all validations are complete and submit the form if they are
+	function checkAllValidationsComplete() {
+		console.log('Validations completed:', window.validationsCompleted, 'of', window.validationsNeeded);
+		
+		// If all validations are complete, submit the form
+		if (window.validationsCompleted >= window.validationsNeeded) {
+			// Reset validation flags
+			window.emailValidationTriggeredBySubmit = false;
+			window.phoneValidationTriggeredBySubmit = false;
+			window.validationsCompleted = 0;
+			window.validationsNeeded = 0;
+			
+			// If form is valid, submit it
+			if (form_valid) {
+				console.log('All validations complete, submitting form');
+				// Trigger the form submission
+				$('form').submit();
+			}
+		}
+	}
+	
 	function submit_valid() {
 		// Store first name for display if needed
 		if ($('input[name="fname"]').val()) {
