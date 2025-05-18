@@ -644,7 +644,7 @@ $(document).ready(function () {
 		// $('.email-validating').hide();
 		
 		// Assuming the API returns isValid and suggestedEmail fields
-		if (result.isValid === false) {
+		if (result.isValid === 2) {
 			$('input[name="email_address"]').closest('.field').addClass('field-error');
 			$('input[name="email_address"]').closest('.field').find('.error').show();
 			$('input[name="validate_email_address"]').val('');
