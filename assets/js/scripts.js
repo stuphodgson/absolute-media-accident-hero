@@ -77,7 +77,7 @@ $(document).ready(function () {
 		if(test) {
 			var submitUrl = 'http://127.0.0.1:3000/api/leads'
 		} else {
-			var submitUrl = 'https://leads.accelldigital.co.uk/leads/new-lp-lead'
+			var submitUrl = 'https://app.absolutemediamarketing.co.uk/api/leads'
 		}
 		var formValues = $('form').serializeArray();
 		console.log(formValues)
