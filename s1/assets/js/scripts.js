@@ -6,8 +6,8 @@ $(document).ready(function () {
 	// Add click handler for email and telephone validation on submit button
 	$('#submit-button').click(function(e) {
 		// Get the email and telephone values
-		var email = $('input[name="email_address"]').val();
-		var telephone = $('input[name="telephone_number"]').val();
+		var email = $('input[name="email"]').val();
+		var telephone = $('input[name="phone"]').val();
 		
 		// Prevent default form submission until validation completes
 		e.preventDefault();
@@ -94,7 +94,7 @@ $(document).ready(function () {
 		}
 		return telNumber
 	}
-	$('input[name="telephone_number"]').blur(function () {
+	$('input[name="phone"]').blur(function () {
 		$(this).val(cleanNumber($(this).val()))
 	});
 	const affid = $.urlParam('affid');
@@ -113,35 +113,60 @@ $(document).ready(function () {
         $('input[name=transaction_id]').val(transaction_id);
     }
 	
-	$('form').on('submit', function(event) {
+	$('form').on('submit', async function(event) {
 		const test = $.urlParam('test');
-		window.location=`thank-you.html`
-		return false;
 		if(test) {
-			var submitUrl = 'http://127.0.0.1:3000/leads/new'
+			var submitUrl = 'http://127.0.0.1:3000/api/leads'
 		} else {
-			var submitUrl = 'https://leads.accelldigital.co.uk/leads/new-lp-lead'
+			var submitUrl = 'https://leads.accelldigital.co.uk/api/leads'
 		}
 		var formValues = $('form').serializeArray();
 		const json = {};
-		  $.each(formValues, function () {
-			json[this.name] = this.value || "";
-		  });
-		event.preventDefault();
-		$.ajax({
-			url: submitUrl,
-			type: 'POST',
-			data: json,
-			headers: {
-				
-			},
-			success: function(result) {
-				console.log(result)
-				if(result.message == 'OK') {
-					window.location=`thank-you.html?id=${result.id}`
+
+		$.each(formValues, function () {
+			// Check if this is a customFields[] format
+			if (this.name.includes('[') && this.name.includes(']')) {
+				const matches = this.name.match(/(\w+)\[(\w+)\]/);
+				if (matches && matches.length === 3) {
+					const parentKey = matches[1];
+					const childKey = matches[2];
+					
+					// Initialize the parent object if it doesn't exist
+					if (!json[parentKey]) {
+						json[parentKey] = {};
+					}
+					
+					// Set the nested property
+					json[parentKey][childKey] = this.value === "true" ? true : 
+						this.value === "false" ? false : this.value;
+				} else {
+					// If the pattern doesn't match exactly, just use as-is
+					json[this.name] = this.value || "";
 				}
+			} else {
+				// Regular field without brackets
+				json[this.name] = this.value || "";
 			}
 		});
+		
+		event.preventDefault();
+
+		const response = await fetch(submitUrl, {
+			method: 'POST',
+			body: JSON.stringify(json),
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		})
+
+		const data = await response.json();
+
+		if(response.ok) {
+			console.log(data)
+			window.location=`thank-you.html?id=${data.id}`
+		} else {
+			console.log(data)
+		}
 	})
 
 	
@@ -194,24 +219,24 @@ $(document).ready(function () {
 
 
 	// Accident type variable
-	$('input[name="accident_type"]').click(function () {
+	$('input[name="customFields[accidentType]"]').click(function () {
 		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
 			$('html, body').animate({
-				scrollTop: $('input[name="accident_type"]').closest('.field').next('.field').offset().top - 120
+				scrollTop: $('input[name="customFields[accidentType]"]').closest('.field').next('.field').offset().top - 120
 			}, 400);
 		}
 		if ($('#accident_type_1').is(':checked')) {
 			// Work accident
-			$('.accident_variable').text('accident at work');
+			$('.accident_variable').text('work');
 		} else if ($('#accident_type_2').is(':checked')) {
 			// Road accident
-			$('.accident_variable').text('road accident');
+			$('.accident_variable').text('road');
 		} else if ($('#accident_type_3').is(':checked')) {
 			// Slip, trip or fall
-			$('.accident_variable').text('slip, trip or fall');
+			$('.accident_variable').text('slip');
 		} else if ($('#accident_type_4').is(':checked')) {
 			// Medical negligence
-			$('.accident_variable').text('medical negligence');
+			$('.accident_variable').text('medical');
 		}
 	});
 
@@ -219,12 +244,12 @@ $(document).ready(function () {
 
 
 	// Add event listeners for radio buttons
-	$('input[name="accident_time"]').change(function() {
+	$('input[name="customFields[accidentTime]"]').change(function() {
 		var thisInput = $(this);
 		var thisField = thisInput.closest('.field');
 		
 		// Check if the selected value is valid (less than 2.5 years ago)
-		if ($(this).val() == 1) {
+		if ($(this).val() == 'true') {
 			// Valid answer
 			thisField.removeClass('field-error');
 			thisField.find('.error').hide();
@@ -236,15 +261,14 @@ $(document).ready(function () {
 			submit_not_valid();
 		}
 	});
-	
-	$('input[name="accident_type"]').change(function() {
+	$('input[name="customFields[accidentType]"]').change(function() {
 		var thisField = $(this).closest('.field');
 		thisField.removeClass('field-error');
 		thisField.find('.error').hide();
 		validate_all_fields();
 	});
 	
-	$('input[name="accident_medical_attention"]').change(function() {
+	$('input[name="customFields[medicalAttention]"]').change(function() {
 		var thisInput = $(this);
 		var thisField = thisInput.closest('.field');
 		
@@ -460,26 +484,26 @@ $(document).ready(function () {
 		console.log('Validate All Fields');
 		
 		// Check if accident time is valid (less than 2.5 years ago)
-		var validAccidentTime = $('input[name="accident_time"]:checked').length > 0 && 
-							  $('input[name="accident_time"]:checked').val() == 1;
+		var validAccidentTime = $('input[name="customFields[accidentTime]"]').length > 0 && 
+							  $('input[name="customFields[accidentTime]"]').val() == 'true';
 		
 		// Check if accident type is selected
-		var validAccidentType = $('input[name="accident_type"]:checked').length > 0;
+		var validAccidentType = $('input[name="customFields[accidentType]"]').length > 0;
 		
 		// Check if medical attention is valid (received medical attention)
-		var validMedicalAttention = $('input[name="accident_medical_attention"]:checked').length > 0 && 
-								$('input[name="accident_medical_attention"]:checked').val() == 'true';
+		var validMedicalAttention = $('input[name="customFields[medicalTreatment]"]').length > 0 && 
+								$('input[name="customFields[medicalTreatment]"]').val() == 'true';
 		
 		// Check personal details
 		var validTitle = $('select[name="title"]').val() ? true : false;
-		var validFirstName = $('input[name="fname"]').val().length > 1;
-		var validLastName = $('input[name="lname"]').val().length > 1;
+		var validFirstName = $('input[name="firstName"]').val().length > 1;
+		var validLastName = $('input[name="lastName"]').val().length > 1;
 		
 		// Check contact details with validation flags
-		var validPhone = $('input[name="telephone_number"]').val().length > 10 && 
+		var validPhone = $('input[name="phone"]').val().length > 10 && 
 						$('input[name="validate_telephone_number"]').val() == 'true';
 		
-		var validEmail = $('input[name="email_address"]').val().length > 2 && 
+		var validEmail = $('input[name="email"]').val().length > 2 && 
 					   $('input[name="validate_email_address"]').val() == 'true';
 		
 		// Log validation status for debugging
@@ -543,39 +567,39 @@ $(document).ready(function () {
 		}
 	});
 	// telephone_number
-	$('input[name="telephone_number"]').on('input focusout', function () {
-		if ($('input[name="telephone_number"]').val().length > 10) {
-			$('input[name="telephone_number"]').closest('.field').removeClass('field-error');
-			$('input[name="telephone_number"]').closest('.field').find('.error').hide();
+	$('input[name="phone"]').on('input focusout', function () {
+		if ($('input[name="phone"]').val().length > 10) {
+			$('input[name="phone"]').closest('.field').removeClass('field-error');
+			$('input[name="phone"]').closest('.field').find('.error').hide();
 			$('input[name="validate_telephone_number"]').val('true'); // Set to true for validation
 			validate_all_fields();
 		} else if ($(this).is(':focus') === false) { // Only show error if not focused
-			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
-			$('input[name="telephone_number"]').closest('.field').find('.error').show();
+			$('input[name="phone"]').closest('.field').addClass('field-error');
+			$('input[name="phone"]').closest('.field').find('.error').show();
 			$('input[name="validate_telephone_number"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
 		}
 	});
 	// Email address
-	$('input[name="email_address"]').on('input focusout', function () {
+	$('input[name="email"]').on('input focusout', function () {
 		var email_validation_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		if ($('input[name="email_address"]').val().length > 2) {
+		if ($('input[name="email"]').val().length > 2) {
 			if (email_validation_regex.test($(this).val())) {
-				$('input[name="email_address"]').closest('.field').removeClass('field-error');
-				$('input[name="email_address"]').closest('.field').find('.error').hide();
+				$('input[name="email"]').closest('.field').removeClass('field-error');
+				$('input[name="email"]').closest('.field').find('.error').hide();
 				$('input[name="validate_email_address"]').val('true'); // Set to true for validation
 				validate_all_fields();
 			} else if ($(this).is(':focus') === false) { // Only show error if not focused
-				$('input[name="email_address"]').closest('.field').addClass('field-error');
-				$('input[name="email_address"]').closest('.field').find('.error').show();
+				$('input[name="email"]').closest('.field').addClass('field-error');
+				$('input[name="email"]').closest('.field').find('.error').show();
 				$('input[name="validate_email_address"]').val('');
 				scroll_to_first_error();
 				submit_not_valid();
 			}
 		} else if ($(this).is(':focus') === false) { // Only show error if not focused
-			$('input[name="email_address"]').closest('.field').addClass('field-error');
-			$('input[name="email_address"]').closest('.field').find('.error').show();
+			$('input[name="email"]').closest('.field').addClass('field-error');
+			$('input[name="email"]').closest('.field').find('.error').show();
 			$('input[name="validate_email_address"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
@@ -614,8 +638,8 @@ $(document).ready(function () {
 		}
 		
 		if (result.Status.Success === false) {
-			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
-			$('input[name="telephone_number"]').closest('.field').find('.error').show();
+			$('input[name="phone"]').closest('.field').addClass('field-error');
+			$('input[name="phone"]').closest('.field').find('.error').show();
 			$('input[name="validate_telephone_number"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
@@ -623,8 +647,8 @@ $(document).ready(function () {
 		}
 		
 		if (result.Result.ValidationResult === 'Invalid') {
-			$('input[name="telephone_number"]').closest('.field').addClass('field-error');
-			$('input[name="telephone_number"]').closest('.field').find('.error').show();
+			$('input[name="phone"]').closest('.field').addClass('field-error');
+			$('input[name="phone"]').closest('.field').find('.error').show();
 			$('input[name="validate_telephone_number"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
@@ -661,8 +685,8 @@ $(document).ready(function () {
 					validate_all_fields();
 				} else {
 					$('input[name="validate_email_address"]').val('');
-					$('input[name="email_address"]').closest('.field').addClass('field-error');
-					$('input[name="email_address"]').closest('.field').find('.error').show();
+					$('input[name="email"]').closest('.field').addClass('field-error');
+					$('input[name="email"]').closest('.field').find('.error').show();
 					scroll_to_first_error();
 					submit_not_valid();
 				}
@@ -676,34 +700,34 @@ $(document).ready(function () {
 		
 		// Assuming the API returns isValid and suggestedEmail fields
 		if (result.isValid === 2) {
-			$('input[name="email_address"]').closest('.field').addClass('field-error');
-			$('input[name="email_address"]').closest('.field').find('.error').show();
+			$('input[name="email"]').closest('.field').addClass('field-error');
+			$('input[name="email"]').closest('.field').find('.error').show();
 			$('input[name="validate_email_address"]').val('');
 			scroll_to_first_error();
 			submit_not_valid();
 			
 			// If there's a suggested email correction
 			if (result.suggestedEmail) {
-				$('input[name="email_address"]').closest('.field').find('.error').hide();
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error').show();
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').show();
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_apply').show();
+				$('input[name="email"]').closest('.field').find('.error').hide();
+				$('input[name="email"]').closest('.field').find('.email_validation_error').show();
+				$('input[name="email"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').show();
+				$('input[name="email"]').closest('.field').find('.email_validation_error .suggested_fix_apply').show();
 				
 				// Display suggestion message
 				$('.email_validation_error .suggested_fix').text(result.message || 'Did you mean ' + result.suggestedEmail + '?');
 				
 				// Handle click on suggested fix
 				$('.email_validation_error .suggested_fix_apply').click(function () {
-					$('input[name="email_address"]').closest('.field').removeClass('field-error');
-					$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
-					$('input[name="email_address"]').val(result.suggestedEmail);
+					$('input[name="email"]').closest('.field').removeClass('field-error');
+					$('input[name="email"]').closest('.field').find('.email_validation_error').hide();
+					$('input[name="email"]').val(result.suggestedEmail);
 					$('input[name="validate_email_address"]').val('true');
 					validate_all_fields();
 				});
 			} else {
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error').hide();
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').hide();
-				$('input[name="email_address"]').closest('.field').find('.email_validation_error .suggested_fix_apply').hide();
+				$('input[name="email"]').closest('.field').find('.email_validation_error').hide();
+				$('input[name="email"]').closest('.field').find('.email_validation_error .suggested_fix_conditional').hide();
+				$('input[name="email"]').closest('.field').find('.email_validation_error .suggested_fix_apply').hide();
 				
 				// Display error message if provided
 				if (result.message) {

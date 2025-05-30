@@ -17,7 +17,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 	<!-- Tailwind CSS -->
-	<link rel="stylesheet" href="assets/css/style.css?v=1.4" />
+	<link rel="stylesheet" href="assets/css/style.css?v=1.5" />
 	
 
 	<!-- Favicons -->
@@ -107,9 +107,10 @@
 	<section class="relative py-12 bg-teal">
 		<div class="container max-w-7xl mx-auto px-4">
 			<form method="POST" action="#" class="main_form">
-				<input type="hidden" name="affid" value="">
+				<input type="hidden" name="affid" value="6551">
 				<input type="hidden" name="campaign">
 				<input type="hidden" name="transaction_id">	
+				<input type="hidden" name="caseType" value="6832217f687e801e5e331545">
 				<div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
 					<p class="font-extrabold text-blue-dark bg-gray-100 px-4 py-2 rounded-md inline-block mb-6"><i class="fa-solid fa-circle-info mr-2"></i> Find out what you could be owed in seconds</p>
 					
@@ -125,13 +126,13 @@
 								<p class="text-xl font-bold mb-3">When did the accident occur?</p>
 								<ul class="grid grid-cols-2 gap-3">
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_time" id="accident_time_1" value="1" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[accidentTime]" id="accident_time_1" value="true" />
 										<label for="accident_time_1" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											Less than 2.5 years ago
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_time" id="accident_time_2" value="2" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[accidentTime]" id="accident_time_2" value="false" />
 										<label for="accident_time_2" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											More than 2.5 years ago
 										</label>
@@ -144,19 +145,19 @@
 								<p class="text-xl font-bold mb-3">What type of accident was it?</p>
 								<ul class="grid grid-cols-2 md:grid-cols-3 gap-3">
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_type" id="accident_type_1" value="1" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[accidentType]" id="accident_type_1" value="work" />
 										<label for="accident_type_1" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											Work accident
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_type" id="accident_type_3" value="3" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[accidentType]" id="accident_type_3" value="slip" />
 										<label for="accident_type_3" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											Slip, trip or fall
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_type" id="accident_type_4" value="4" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[accidentType]" id="accident_type_4" value="medical" />
 										<label for="accident_type_4" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											Medical negligence
 										</label>
@@ -168,13 +169,13 @@
 								<p class="text-xl font-bold mb-3">Did you see a doctor, go to hospital, or receive any treatment?</p>
 								<ul class="grid grid-cols-2 gap-3">
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_medical_attention" id="accident_medical_attention_1" value="true" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[medicalTreatment]" id="accident_medical_attention_1" value="true" />
 										<label for="accident_medical_attention_1" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											Yes
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox hidden" name="accident_medical_attention" id="accident_medical_attention_2" value="false" />
+										<input type="radio" class="custom-checkbox hidden" name="customFields[medicalTreatment]" id="accident_medical_attention_2" value="false" />
 										<label for="accident_medical_attention_2" class="block border border-gray-300 rounded-md p-3 cursor-pointer hover:border-blue transition-colors">
 											No
 										</label>
@@ -202,12 +203,12 @@
 								</div>
 								<div class="field md:col-span-2">
 									<label class="block text-sm font-medium mb-1">First name</label>
-									<input type="text" name="fname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="First name" />
+									<input type="text" name="firstName" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="First name" />
 									<span class="error text-red-600 hidden">Please enter your first name</span>
 								</div>
 								<div class="field md:col-span-2">
 									<label class="block text-sm font-medium mb-1">Last name</label>
-									<input type="text" name="lname" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="Last name" />
+									<input type="text" name="lastName" class="text-capitalise-first-letter w-full border border-gray-300 rounded-md p-2" placeholder="Last name" />
 									<span class="error text-red-600 hidden">Please enter your last name</span>
 								</div>
 							</div>
@@ -215,7 +216,7 @@
 								<div class="field">
 									<label class="block text-sm font-medium mb-1">Mobile telephone number</label>
 									<div class="field-icon secure relative">
-										<input type="tel" name="telephone_number" class="numbers_only telephone_number d8val_inttelephone_mobile_line w-full border border-gray-300 rounded-md p-2" placeholder="Mobile telephone number" />
+										<input type="tel" name="phone" class="numbers_only telephone_number d8val_inttelephone_mobile_line w-full border border-gray-300 rounded-md p-2" placeholder="Mobile telephone number" />
 										<span class="error text-red-600 hidden">Please enter a valid mobile number</span>
 									</div>
 									<input type="hidden" name="validate_telephone_number" value="" />
@@ -223,7 +224,7 @@
 								<div class="field">
 									<label class="block text-sm font-medium mb-1">Email address</label>
 									<div class="field-icon secure relative">
-										<input type="email" name="email_address" class="w-full border border-gray-300 rounded-md p-2" placeholder="Email address" />
+										<input type="email" name="email" class="w-full border border-gray-300 rounded-md p-2" placeholder="Email address" />
 										<span class="error text-red-600 hidden">Please enter a valid email address</span>
 										<span class="email_validation_error hidden bg-yellow-100 text-yellow-800 p-2 mt-1 rounded">
 											This email address doesn't look valid.<span class="suggested_fix_conditional"> <span class="suggested_fix"></span>.</span> Would you like to fix?<br />
@@ -509,8 +510,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/odometer@0.4.8/odometer.min.js"></script>
 	<link rel="stylesheet" href="../assets/css/fontawesome_all.css">
 	<!-- <script src="https://kit.fontawesome.com/575619b7c2.js" crossorigin="anonymous"></script> -->
-	<script src="assets/js/scripts.js?v=1.4"></script>
-	<script src="assets/js/popups.js?v=1.4"></script>
+	<script src="assets/js/scripts.js?v=1.5"></script>
+	<script src="assets/js/popups.js?v=1.5"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
 	<script>
 		function generateUUID() {

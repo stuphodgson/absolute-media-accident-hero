@@ -21,7 +21,7 @@
 
 	<!-- CSS
   ================================================== -->
-	<link rel="stylesheet" href="assets/css/site.css?v=1.3" />
+	<link rel="stylesheet" href="assets/css/site.css?v=1.4" />
 
 	<!-- Favicons
 	================================================== -->
@@ -119,9 +119,10 @@
 	<section class="form lp height-75">
 		<div class="wrap largest">
 			<form method="POST" action="#" class="main_form">
-				<input type="hidden" name="affid" value="">
+				<input type="hidden" name="affid" value="6551">
 				<input type="hidden" name="campaign">
 				<input type="hidden" name="transaction_id">
+				<input type="hidden" name="caseType" value="6832217f687e801e5e331545">
 				<div class="step" id="step_1">
 					<div class="flex-container sixty-forty center-vertically">
 						<div class="column">
@@ -136,13 +137,13 @@
 							<div class="field required">
 								<ul class="options two">
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_time" id="accident_time_1" value="1" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentTime]" id="accident_time_1" value="true" />
 										<label for="accident_time_1">
 											Less than 2.5 years ago
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_time" id="accident_time_2" value="2" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentTime]" id="accident_time_2" value="false" />
 										<label for="accident_time_2">
 											More than 2.5 years ago
 										</label>
@@ -188,31 +189,31 @@
 								<label class="h5">What type of accident was it?</label>
 								<ul class="options two">
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_type" id="accident_type_1" value="1" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentType]" id="accident_type_1" value="work" />
 										<label for="accident_type_1">
 											Work accident
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_type" id="accident_type_2" value="2" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentType]" id="accident_type_2" value="road" />
 										<label for="accident_type_2">
 											Road accident
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_type" id="accident_type_3" value="3" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentType]" id="accident_type_3" value="slip" />
 										<label for="accident_type_3">
 											Slip, trip or fall
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_type" id="accident_type_4" value="4" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentType]" id="accident_type_4" value="medical" />
 										<label for="accident_type_4">
 											Medical negligence
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_type" id="accident_type_5" value="5" />
+										<input type="radio" class="custom-checkbox" name="customFields[accidentType]" id="accident_type_5" value="other" />
 										<label for="accident_type_5">
 											Other
 										</label>
@@ -223,13 +224,13 @@
 								<label class="h5">Did you receive medical attention?</label>
 								<ul class="options margin-bottom-none required">
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_medical_attention" id="accident_medical_attention_1" value="true" />
+										<input type="radio" class="custom-checkbox" name="customFields[medicalTreatment]" id="accident_medical_attention_1" value="true" />
 										<label for="accident_medical_attention_1">
 											Yes
 										</label>
 									</li>
 									<li>
-										<input type="radio" class="custom-checkbox" name="accident_medical_attention" id="accident_medical_attention_2" value="false" />
+										<input type="radio" class="custom-checkbox" name="customFields[medicalTreatment]" id="accident_medical_attention_2" value="false" />
 										<label for="accident_medical_attention_2">
 											No
 										</label>
@@ -379,19 +380,19 @@
 							<div class="field two">
 								<div class="field">
 									<label class="h5 margin-half">First name</label>
-									<input type="text" name="fname" class="text-capitalise-first-letter" placeholder="First name" />
+									<input type="text" name="firstName" class="text-capitalise-first-letter" placeholder="First name" />
 									<span class="error">Please enter your first name</span>
 								</div>
 								<div class="field">
 									<label class="h5 margin-half">Last name</label>
-									<input type="text" name="lname" class="text-capitalise-first-letter" placeholder="Last name" />
+									<input type="text" name="lastName" class="text-capitalise-first-letter" placeholder="Last name" />
 									<span class="error">Please enter your last name</span>
 								</div>
 							</div>
 							<div class="field">
 								<label class="h5 margin-half">Mobile telephone number</label>
 								<div class="field-icon secure">
-									<input type="tel" name="telephone_number" class="numbers_only telephone_number d8val_inttelephone_mobile_line" placeholder="Mobile telephone number" />
+									<input type="tel" name="phone" class="numbers_only telephone_number d8val_inttelephone_mobile_line" placeholder="Mobile telephone number" />
 									<span class="error">Please enter a valid mobile number</span>
 								</div>
 								<input type="hidden" name="validate_telephone_number" value="" />
@@ -399,7 +400,7 @@
 							<div class="field">
 								<label class="h5 margin-half">Email address</label>
 								<div class="field-icon secure">
-									<input type="email" name="email_address" placeholder="Email address" />
+									<input type="email" name="email" placeholder="Email address" />
 									<span class="error">Please enter a valid email address</span>
 									<span class="email_validation_error">
 										This email address doesn't look valid.<span class="suggested_fix_conditional"> <span class="suggested_fix"></span>.</span> Would you like to fix?<br />
@@ -416,7 +417,7 @@
 											<p class="h6"><i class="fa-solid fa-circle-info"></i> Please complete all of the fields above to complete</p>
 										</div>
 										<div class="form-valid hide">
-											<p class="h6 margin-half"><i class="fa-solid fa-circle-check text-color-green"></i> Thank you, <span class="fname_pull"></span>. You can now go ahead and click the button below to submit your claim,</p>
+											<p class="h6 margin-half"><i class="fa-solid fa-circle-check text-color-green"></i> Thank you, <span class="firstName_pull"></span>. You can now go ahead and click the button below to submit your claim,</p>
 										</div>
 										<button id="submit" type="submit" class="button larger full animation-green-flash submit infinite" disabled>Submit your claim</button>
 									</li>
@@ -729,8 +730,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/odometer@0.4.8/odometer.min.js"></script>
 	<link rel="stylesheet" href="assets/css/fontawesome_all.css">
 	<!-- <script src="https://kit.fontawesome.com/575619b7c2.js" crossorigin="anonymous"></script> -->
-	<script src="assets/js/scripts.js?v=1.3"></script>
-	<script src="assets/js/popups.js?v=1.3"></script>
+	<script src="assets/js/scripts.js?v=1.4"></script>
+	<script src="assets/js/popups.js?v=1.4"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js"></script>
 	<script>
 		function generateUUID() {
