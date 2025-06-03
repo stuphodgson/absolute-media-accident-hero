@@ -3,6 +3,39 @@ $(document).ready(function () {
 	$('input[name="validate_telephone_number"]').val('false');
 	$('input[name="validate_email_address"]').val('false');
 	
+	//Get the IP address of the user
+	let userIpAddress = null;
+
+	// Function to get user's IP address
+	async function getUserIpAddress() {
+		try {
+			const response = await fetch('https://api.ipify.org?format=json');
+			const data = await response.json();
+			userIpAddress = data.ip;
+			console.log('User IP Address:', userIpAddress);
+			return userIpAddress;
+		} catch (error) {
+			console.error('Error fetching IP address:', error);
+			// Fallback to another service if the first one fails
+			try {
+				const fallbackResponse = await fetch('https://ipapi.co/ip/');
+				const fallbackIp = await fallbackResponse.text();
+				userIpAddress = fallbackIp.trim();
+				console.log('User IP Address (fallback):', userIpAddress);
+				return userIpAddress;
+			} catch (fallbackError) {
+				console.error('Error with fallback IP service:', fallbackError);
+				userIpAddress = 'unknown';
+				return userIpAddress;
+			}
+		}
+	}
+
+	// Get IP address when page loads
+	$(document).ready(function() {
+		getUserIpAddress();
+	});
+
 	// Add click handler for email and telephone validation on submit button
 	$('#submit-button').click(function(e) {
 		// Get the email and telephone values
@@ -148,7 +181,7 @@ $(document).ready(function () {
 				json[this.name] = this.value || "";
 			}
 		});
-		
+		json.ipAddress = userIpAddress || 'unknown';
 		event.preventDefault();
 
 		const response = await fetch(submitUrl, {
