@@ -537,12 +537,11 @@ $(document).ready(function () {
 		<div class="basic-list">
 			<ul>
 				<li><strong>Company Number:</strong> 0C308339</li>
-				<li><strong>VAT Number:</strong> </li>
-				<li><strong>ICO Number:</strong> </li>
+				<li><strong>ICO Number:</strong> Z8717981</li>
 				<li><strong>Address:</strong> Units 115-119 Timber Wharf, 42-50 Worsley Street, Manchester, M15 4LD</li>
 				<li><strong>Hours:</strong> Mon - Fri 9:00AM - 5:00PM</li>
 				<li><strong>Telephone number:</strong> 0161 873 2740</li>
-				<li><strong>Email address:</strong> enquiries@clearlawonline.co.uk</li>
+				<li><strong>Email address:</strong> sales.leads@clearlawonline.co.uk</li>
 			</ul>
 		</div>
 		
