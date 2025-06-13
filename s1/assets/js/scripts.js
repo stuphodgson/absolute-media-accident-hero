@@ -135,11 +135,11 @@ $(document).ready(function () {
 		$('input[name="affiliateId"]').val(affiliateId);
 	}
 
-	const source = $.urlParam('source');
-	if(source) {
-		$('input[name="source"]').val(source);
+	const sourceId = $.urlParam('sourceId');
+	if(sourceId) {
+		$('input[name="sourceId"]').val(sourceId);
 	} else {
-		$('input[name="source"]').val('KM01');
+		$('input[name="sourceId"]').val('KM01');
 	}
 
 	const campaign = $.urlParam('campaign');
