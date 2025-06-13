@@ -130,11 +130,16 @@ $(document).ready(function () {
 	$('input[name="phone"]').blur(function () {
 		$(this).val(cleanNumber($(this).val()))
 	});
-	const affid = $.urlParam('affid');
-	if(affid) {
-		$('input[name="affid"]').val(affid);
+	const affiliateId = $.urlParam('affiliateId');
+	if(affiliateId) {
+		$('input[name="affiliateId"]').val(affiliateId);
+	}
+
+	const source = $.urlParam('source');
+	if(source) {
+		$('input[name="source"]').val(source);
 	} else {
-		$('input[name="affid"]').val('direct');
+		$('input[name="source"]').val('KM01');
 	}
 
 	const campaign = $.urlParam('campaign');
