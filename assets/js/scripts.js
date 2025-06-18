@@ -481,14 +481,14 @@ $(document).ready(function () {
 		}
 	});
 	// Last name
-	$('input[name="lname"]').focusout(function () {
-		if ($('input[name="lname"]').val().length > 1) {
-			$('input[name="lname"]').closest('.field').removeClass('field-error');
-			$('input[name="lname"]').closest('.field').find('.error').hide();
+	$('input[name="lastName"]').focusout(function () {
+		if ($('input[name="lastName"]').val().length > 1) {
+			$('input[name="lastName"]').closest('.field').removeClass('field-error');
+			$('input[name="lastName"]').closest('.field').find('.error').hide();
 			step_4_validate_all();
 		} else {
-			$('input[name="lname"]').closest('.field').addClass('field-error');
-			$('input[name="lname"]').closest('.field').find('.error').show();
+			$('input[name="lastName"]').closest('.field').addClass('field-error');
+			$('input[name="lastName"]').closest('.field').find('.error').show();
 			scroll_to_first_error();
 			submit_not_valid();
 		}
