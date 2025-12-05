@@ -204,6 +204,38 @@ $(document).ready(function () {
 			window.location=`thank-you.html?id=${data.id}`
 		} else {
 			console.log(data)
+			
+			// Handle validation errors from server
+			if (data.errors) {
+				// Handle phone validation error
+				if (data.errors.phone) {
+					$('input[name="phone"]').closest('.field').addClass('field-error');
+					$('input[name="phone"]').closest('.field').find('.error').text(data.errors.phone).show();
+					$('input[name="validate_telephone_number"]').val('');
+					scroll_to_first_error();
+					submit_not_valid();
+				}
+				
+				// Handle email validation error
+				if (data.errors.email) {
+					$('input[name="email"]').closest('.field').addClass('field-error');
+					$('input[name="email"]').closest('.field').find('.error').text(data.errors.email).show();
+					$('input[name="validate_email_address"]').val('');
+					scroll_to_first_error();
+					submit_not_valid();
+				}
+				
+				// Handle any other field errors
+				Object.keys(data.errors).forEach(function(fieldName) {
+					if (fieldName !== 'phone' && fieldName !== 'email') {
+						var $field = $('input[name="' + fieldName + '"], select[name="' + fieldName + '"]');
+						if ($field.length) {
+							$field.closest('.field').addClass('field-error');
+							$field.closest('.field').find('.error').text(data.errors[fieldName]).show();
+						}
+					}
+				});
+			}
 		}
 	})
 
@@ -537,9 +569,8 @@ $(document).ready(function () {
 		var validFirstName = $('input[name="firstName"]').val().length > 1;
 		var validLastName = $('input[name="lastName"]').val().length > 1;
 		
-		// Check contact details with validation flags
-		var validPhone = $('input[name="phone"]').val().length > 10 && 
-						$('input[name="validate_telephone_number"]').val() == 'true';
+		// Check contact details - basic checks here, full validation on submit
+		var validPhone = $('input[name="phone"]').val().length > 10;
 		
 		var validEmail = $('input[name="email"]').val().length > 2 && 
 					   $('input[name="validate_email_address"]').val() == 'true';
@@ -609,7 +640,7 @@ $(document).ready(function () {
 		if ($('input[name="phone"]').val().length > 10) {
 			$('input[name="phone"]').closest('.field').removeClass('field-error');
 			$('input[name="phone"]').closest('.field').find('.error').hide();
-			$('input[name="validate_telephone_number"]').val('true'); // Set to true for validation
+			// Don't set validation flag here - only Data8 validation should set this
 			validate_all_fields();
 		} else if ($(this).is(':focus') === false) { // Only show error if not focused
 			$('input[name="phone"]').closest('.field').addClass('field-error');
